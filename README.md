@@ -1,12 +1,26 @@
 # Python TDCR Benchmark
 
-This folder contains a Python implementation of the TDCR benchmark workflow from the MATLAB code. It implements:
+This project provides a Python implementation of modelling and benchmark tools for tendon-driven continuum robots (TDCRs). TDCRs are flexible robots actuated by tendons routed along a compliant backbone; pulling the tendons bends the robot and produces the resulting 3D shape.
+
+The implementation focuses on a two-segment TDCR with six tendons and reproduces the modelling workflow used to compare common TDCR modelling assumptions. It implements:
 
 - `cc`: geometric constant curvature model
 - `ccsub`: piecewise constant curvature static model
 - `vc`: Cosserat rod model
 - `vcref`: subsegment Cosserat rod model
 - `prbm`: pseudo-rigid-body model
+
+## Background and Attribution
+
+This work is highly inspired by the paper:
+
+Rao, P., Peyron, Q., Lilge, S., and Burgner-Kahrs, J. (2021). *How to Model Tendon-Driven Continuum Robots and Benchmark Modelling Performance*. Frontiers in Robotics and AI, 7:630245. DOI: [10.3389/frobt.2020.630245](https://doi.org/10.3389/frobt.2020.630245)
+
+The original authors provide MATLAB and C++ implementations with the paper at:
+
+[https://github.com/SvenLilge/tdcr-modeling](https://github.com/SvenLilge/tdcr-modeling)
+
+This repository is an independent Python adaptation of that modelling and benchmarking workflow. It is intended to make the models easier to run, inspect, test, and extend in a Python-based robotics/control workflow.
 
 ## Installation
 
@@ -16,7 +30,7 @@ From the repository root:
 python3 -m pip install -e ".[test]"
 ```
 
-The package depends on `numpy`, `scipy`, `matplotlib`, and `PyYAML`.
+The package depends on `numpy`, `scipy`, `matplotlib`, `plotly`, and `PyYAML`.
 
 ## Usage
 
