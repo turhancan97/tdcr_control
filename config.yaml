@@ -1,0 +1,55 @@
+# Configuration for 2-segment TDCR (Tendon-Driven Continuum Robot)
+# Based on matlab/Parameters/tdcr_2segments.m
+
+robot:
+  # Subsegment number and length
+  segments:
+    - number_of_disks: 10
+      length: 0.200  # in meters (200e-3)
+    - number_of_disks: 10
+      length: 0.200  # in meters (200e-3)
+
+  # Tendon routing
+  routing:
+    distance_to_center: 0.010  # r_disk in meters (10*1e-3)
+    # Tendon positions (x, y, z, 1) - using the 6-tendon setup from the MATLAB file
+    tendon_positions:
+      - [0.0, 0.010, 0.0, 1.0]                                 # r1 (proximal)
+      - [0.00866025403, -0.005, 0.0, 1.0]                      # r2 (proximal, r_disk*cos(-pi/6), r_disk*sin(-pi/6))
+      - [-0.00866025403, -0.005, 0.0, 1.0]                     # r3 (proximal, r_disk*cos(7*pi/6), r_disk*sin(7*pi/6))
+      - [0.0, 0.010, 0.0, 1.0]                                 # r4 (distal)
+      - [0.00866025403, -0.005, 0.0, 1.0]                      # r5 (distal, r_disk*cos(-pi/6), r_disk*sin(-pi/6))
+      - [-0.00866025403, -0.005, 0.0, 1.0]                     # r6 (distal, r_disk*cos(7*pi/6), r_disk*sin(7*pi/6))
+
+  # Tendon tensions in Newtons
+  # F = [8 0 0 0 0 0];
+  tensions: [8.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+  # Geometric constant-curvature actuation uses tendon displacements in meters,
+  # unlike the static models that use tendon tensions.
+  constant_curvature:
+    tendon_displacements: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+
+  # Backbone mechanical and geometrical properties
+  backbone:
+    youngs_modulus: 54.0e9          # E
+    poissons_ratio: 0.3             # nu
+    outer_radius: 0.0007            # ro = 1.4/2 * 10^-3
+    inner_radius: 0.0               # ri = 0
+    mass_per_length: 0.0115         # kg/m
+
+  # Spacer disk properties
+  disk:
+    mass: 0.0002                    # m_disk = 0.2e-3 kg
+
+environment:
+  gravity: 0.0                      # g = 0 (or 9.81)
+
+# External tip forces and moments
+external_loads:
+  force: [0.0, 0.0, 0.0, 0.0]       # Ftex
+  moment: [0.0, 0.0, 0.0, 0.0]      # Mtex
+
+# Output configuration
+output:
+  format: "csv"                     # Based on answer 15: "csv is good"
