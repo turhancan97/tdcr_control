@@ -23,6 +23,7 @@ test = [
 
 [project.scripts]
 tdcr_benchmark = "tdcr_benchmark.cli:main"
+tdcr_animate = "tdcr_benchmark.animate:main"
 
 [tool.setuptools.packages.find]
 where = ["."]
